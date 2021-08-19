@@ -1,0 +1,14 @@
+{
+  "name": "pa-proyect",
+  "version": "1.0.0",
+  "description": "Proyecto para buscar profesionales para tu casa, cerca de tu zona",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ezequiel Saldivar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
