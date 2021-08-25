@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import NavigationBar from "./components/navigationBar";
+import Sesion from "./components/iniciarSesion"
+import BrandBar from "./components/brandBar"
+
+
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 
 function App() {
+  //declaro esto para manejar lo que se monta y desmonta de la pag
+  const [register, setRegister] = useState(false);
+
+  const handleLoginClick = ()=>{
+    setRegister(!register);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {register ? (
+        <NavigationBar handleLoginClick={handleLoginClick} register={register}/>
+
+      ) : (
+        <>
+          <BrandBar handleLoginClick={handleLoginClick} register={register}/>
+          <Sesion/>
+        </>
+      )}
+
+    </>
+  
   );
 }
 
