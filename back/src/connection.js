@@ -1,6 +1,6 @@
-const bd = require('mysql2');
+const mysql = require('mysql2');
 
-const connection = bd.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -10,7 +10,7 @@ const connection = bd.createConnection({
 connection.connect((error)=>{
     if(error){
         console.log('No me pude conectar a la Base de Datos');
-    }else{
+    }else{  
         console.log('Estas conectado a la BD!');
     }
 });
