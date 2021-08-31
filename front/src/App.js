@@ -3,30 +3,43 @@ import { React, useState } from "react";
 import NavigationBar from "./components/navigationBar";
 import Sesion from "./components/iniciarSesion"
 import Footer from "./components/footer";
+import BarraBusqueda from "./components/barraBusqueda";
+
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 
 function App() {
   //declaro esto para manejar lo que se monta y desmonta de la pag
   const [register, setRegister] = useState(false);
-
+  //esto voy a usar para setear la barra de navegacion del usuario
+  const [user, setUser] = useState('');
 
   const handleLoginClick = ()=>{
-    setRegister(true);
+    setRegister(!register);
+  }
+
+  const handlerLoginSuccess = (userData)=>{
+    setUser(userData);
   }
 
   return (
-    <>
-        <NavigationBar handleLoginClick={handleLoginClick} register={register}/>
+    <BrowserRouter>
+      <NavigationBar handleLoginClick={handleLoginClick} register={register} user={user}/>
 
-      {!register? (
-        <p>Barra de Busqueda</p>
-      ) : (
-        <>
-          <Sesion handleLoginClick={handleLoginClick} register={register} />
-        </>
-      )}
-      <Footer className="d-flex align-items-end" />
-    </>
+      <Switch>
+        <Route exact path="/">
+          <BarraBusqueda/>
+        </Route>
+
+        <Route path="/register">
+          <Sesion 
+            handleLoginClick={handleLoginClick} 
+            register={register}
+            handlerLoginSuccess={handlerLoginSuccess}/>
+        </Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
   
   );
 }

@@ -1,30 +1,35 @@
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
-import { React, useState } from 'react';
+import { Link } from 'react-router-dom';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-
-const NavigationBar = ({handleLoginClick, register}) => {
-  //esto voy a usar para setear la barra de navegacion del usuario
-  const [user, setUser] = useState(''); 
+const NavigationBar = ({handleLoginClick, register, user}) => {
 
   return ( 
-      <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark">
+      <Link className="navbar-brand" to="/"
+      onClick={handleLoginClick}>proyecto-PA</Link>
 
-      <Navbar.Brand href="">proyecto-pA</Navbar.Brand>
-
-      {!register && user=='' ?
-      (
-        <Nav className="ml-auto">
-          {/* <Nav.Link href="/register">Conseguir Cliente</Nav.Link> */}
-          <Button className="mx-2" variant="primary">Crear Cuenta</Button>
-          <Button variant="primary" onClick={handleLoginClick}>Iniciar Sesion</Button>
-        </Nav>
-
-      ):(
-        <>
-        </>
-      )}
+      {!register ?(
+       <Nav className="ml-auto">
+          <Link className="btn btn-primary mx-2" to="">Crear Cuenta</Link>
+          <Link 
+            className="btn btn-primary" 
+            to="/register" 
+            onClick={handleLoginClick}>
+          Iniciar Sesion
+          </Link>
+        </Nav>): (
+          <></>
+        )}
+        {(user && register) &&
+         <NavDropdown className="ml-auto" title={user} id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="#action/3.4">Cerrar Sesion</NavDropdown.Item>
+        </NavDropdown>}
     </Navbar>
   );
 } 
