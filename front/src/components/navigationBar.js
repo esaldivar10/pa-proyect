@@ -3,7 +3,9 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const NavigationBar = ({handleLoginClick, register, user}) => {
+
+const NavigationBar = ({handleLoginClick, register, user, prof, handlerCloseSesionClick}) => {
+ 
 
   return ( 
     <Navbar bg="dark" variant="dark">
@@ -22,13 +24,23 @@ const NavigationBar = ({handleLoginClick, register, user}) => {
         </Nav>): (
           <></>
         )}
-        {(user && register) &&
-         <NavDropdown className="ml-auto" title={user} id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+        {(user && register && !prof) &&
+         <NavDropdown className="ml-auto" title={user} alignRight>
+          <NavDropdown.Item href="#action/3.1">Perfil</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">Mis publicaciones</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Historial</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Cerrar Sesion</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.4" 
+            onClick={handlerCloseSesionClick}>Cerrar Sesion</NavDropdown.Item>
+        </NavDropdown>}
+        {(user && register && prof) && 
+        <NavDropdown className="ml-auto" title={user} alignRight>
+           <NavDropdown.Item href="#action/3.1">Perfil</NavDropdown.Item>
+           <NavDropdown.Item href="#action/3.2">Contactos</NavDropdown.Item>
+           <NavDropdown.Item href="#action/3.3">Historial</NavDropdown.Item>
+           <NavDropdown.Divider />
+           <NavDropdown.Item href="#action/3.4" onClick={handlerCloseSesionClick}
+            >Cerrar Sesion</NavDropdown.Item>
         </NavDropdown>}
     </Navbar>
   );

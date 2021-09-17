@@ -21,15 +21,15 @@ router.post('/', (req, res)=>{
             //console.log('Aca hay que hacer la verificacion con los datos ingresados');
             if (result.length === 1) {
                 console.log(result);
-                const usuarioCompleto = `${result[0].nombre_usuario}`;
-
+                const usuarioCompleto =`${result[0].nombre_usuario}`;
+                
                 //aca puedo guardar lo que quiera, asociandolo a la cookie
-                req.session.user = {
-                    name: result[0].nombre_usuario
-                }
-                console.log(req.session.user);
+                // req.session.user = {
+                    // name: result[0].nombre_usuario
+                // }
+                //console.log(req.session.user);
 
-                res.json({message:'Usuario válido', data: usuarioCompleto});
+                res.json({message:'Usuario válido', data: result[0]});
                 
             } else {
                 res.status(403).json({
@@ -47,4 +47,3 @@ router.post('/', (req, res)=>{
 router.delete('/', (req, res)=>{})
 
 module.exports = router;
-

@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 
-const Sesion = ({handleLoginClick, register, handlerLoginSuccess}) => {
+const Sesion = ({handleLoginClick, register, 
+                handlerLoginSuccess, prof, 
+                handlerProfesionalUser}) => {
+                  
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   
@@ -43,13 +46,14 @@ const Sesion = ({handleLoginClick, register, handlerLoginSuccess}) => {
     //despues verifico que el mensaje se envio satisfactoriamente
     const dataJson = await response.json();
     if (response.status === 200) {
-      handlerLoginSuccess(dataJson.data);
+      handlerLoginSuccess(dataJson.data.nombre_usuario);
+      handlerProfesionalUser(dataJson.data.profesion);
       console.log(dataJson);
 
       Swal.fire({
-        position: 'top-end',
+        // position: 'top-end',
         // icon: 'success',
-        title: `Bienvende ${dataJson.data}`,
+        title: `Bienvende ${dataJson.data.nombre_usuario}`,
         showConfirmButton: false,
         // timer: 1500
       })
@@ -62,7 +66,6 @@ const Sesion = ({handleLoginClick, register, handlerLoginSuccess}) => {
         icon: 'error',
         title: 'Oops...',
         text: `${dataJson.message}`,
-        // footer: '<a href="">Why do I have this issue?</a>'
       })
     }
   }

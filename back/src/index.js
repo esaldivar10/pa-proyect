@@ -9,7 +9,7 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
-app.use(cors({credential: true, origin: 'http://localhost:3000'}));
+app.use(cors({credential : true, origin : 'http://localhost:3000'}));
 
 //voy a intentar correrlo desde afuera porq me generaba la carpeta de sessions dentro del /src
 
@@ -20,7 +20,7 @@ app.use(
         saveUninitialized: true,
         store: new FileStore(),
         //puedo ponerle un nombre a la cooki
-        name: 'proyect',
+        name: 'proyect-pa',
 }))
 
 app.use(express.json());
