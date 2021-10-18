@@ -1,0 +1,20 @@
+body{
+    background-image: url('img/tools2.jpeg');
+    /* filter: url('img/tools2.jpeg'); */
+    /* filter: opacity(.5) */
+}
+
+.navbar .sesion-button{
+    color: #FAFFDA;
+    text-decoration: underline;
+}
+
+.navbar .sesion-button:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
+.footer{
+  position: fixed;
+  margin-bottom: 0 ;
+}

@@ -14,9 +14,9 @@ const NavigationBar = ({handleLoginClick, register, user, prof, handlerCloseSesi
 
       {!register ?(
        <Nav className="ml-auto">
-          <Link className="btn btn-primary mx-2" to="">Crear Cuenta</Link>
+          {/* <Link className="btn btn-primary mx-2" to="#">Crear Cuenta</Link> */}
           <Link 
-            className="btn btn-primary" 
+            className="navbar sesion-button" 
             to="/register" 
             onClick={handleLoginClick}>
           Iniciar Sesion

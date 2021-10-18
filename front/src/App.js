@@ -4,6 +4,7 @@ import Sesion from "./components/iniciarSesion"
 import Footer from "./components/footer";
 import BarraBusqueda from "./components/barraBusqueda";
 import Search from "./components/search";
+import './style.css'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -90,7 +91,7 @@ function App() {
           
         </Route>
       </Switch>
-      <Footer />
+      <Footer className="footer"/>
     </BrowserRouter>
   
   );
